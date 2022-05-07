@@ -4,7 +4,7 @@ namespace ver1
 {
     public interface IDocument
     {
-        enum FormatType {TXT, PDF, JPG}
+        enum FormatType { TXT, PDF, JPG }
 
         /// <summary>
         /// Zwraca typ formatu dokumentu
