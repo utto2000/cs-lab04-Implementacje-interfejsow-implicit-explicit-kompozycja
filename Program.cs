@@ -1,5 +1,6 @@
 ﻿using System;
 using ver1;
+using zadanie1;
 
 class Program	
 {
@@ -16,5 +17,12 @@ class Program
         System.Console.WriteLine(xerox.Counter);
         System.Console.WriteLine(xerox.PrintCounter);
         System.Console.WriteLine(xerox.ScanCounter);
+        Console.WriteLine();
+
+        var multifunction = new MultifunctionalDevice();
+        multifunction.PowerOff();  
+        multifunction.SendDocument();
+        multifunction.Print(in doc1);
+
     }
 }

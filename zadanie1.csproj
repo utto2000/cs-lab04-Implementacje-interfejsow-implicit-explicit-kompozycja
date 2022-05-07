@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".git\Class1.cs" />
+    <Compile Include="MultifunctionalDevice.cs" />
     <Compile Include="Copier.cs" />
     <Compile Include="Devices.cs" />
     <Compile Include="Documents.cs" />

@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ver1;
 using System;
 using System.IO;
+using zadanie1;
 
 namespace ver1UnitTests
 {
@@ -156,9 +157,48 @@ namespace ver1UnitTests
             }
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
+        // weryfikacja, czy po wywołaniu metody `SendDocument` i włączonym Fax w napisie pojawiają się słowa `send`
+        // oraz `Fax`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void Fax_SendDomcument_DeviceOn()
+        {
+            var fax = new MultifunctionalDevice();
+            fax.PowerOn();
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                fax.SendDocument();
+                Assert.IsTrue(consoleOutput.GetOutput().Contains("send"));
+                Assert.IsTrue(consoleOutput.GetOutput().Contains("Fax"));
+            }
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+
+        }
+
+        // weryfikacja, czy po wywołaniu metody `SendDocument` i wyłączonym Fax w napisie NIE pojawiają się słowa `send`
+        // oraz `Fax`
+        // wymagane przekierowanie konsoli do strumienia StringWriter
+        [TestMethod]
+        public void Fax_SendDomcument_DeviceOff()
+        {
+            var fax = new MultifunctionalDevice();
+            fax.PowerOn();
+            var currentConsoleOut = Console.Out;
+            currentConsoleOut.Flush();
+            using (var consoleOutput = new ConsoleRedirectionToStringWriter())
+            {
+                fax.SendDocument();
+                Assert.IsFalse(consoleOutput.GetOutput().Contains("send"));
+                Assert.IsFalse(consoleOutput.GetOutput().Contains("Fax"));
+            }
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+
+        }
 
 
-        // weryfikacja, czy po wywołaniu metody `ScanAndPrint` i wyłączonej kopiarce w napisie pojawiają się słowa `Print`
+        // weryfikacja, czy po wywołaniu metody `ScanAndPrint` i włączonej kopiarce w napisie pojawiają się słowa `Print`
         // oraz `Scan`
         // wymagane przekierowanie konsoli do strumienia StringWriter
         [TestMethod]
